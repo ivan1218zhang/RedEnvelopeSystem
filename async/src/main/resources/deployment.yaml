@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: async
+  labels:
+    name: async
+spec:
+  selector:
+    matchLabels:
+      name: async
+  template:
+    metadata:
+      labels:
+        name: async
+    spec:
+      containers:
+        - name: async
+          image: 192.168.233.200:10001/library/async
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8093

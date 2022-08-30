@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyf.redenvelopesystem.common.database.dao.StoreEnvelopeRecordMapper">
+  <resultMap id="BaseResultMap" type="com.zyf.redenvelopesystem.common.database.dto.StoreEnvelopeRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
+    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+  </resultMap>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.String">
+    update from store_envelope_record
+    set delete_time = now()
+    where id = #{id,jdbcType=VARCHAR} and delete_time is null
+  </update>
+  <insert id="insert" parameterType="com.zyf.redenvelopesystem.common.database.dto.StoreEnvelopeRecord">
+    insert into store_envelope_record (id, activity_id, member_id, 
+      status, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{activityId,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, now())
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zyf.redenvelopesystem.common.database.dto.StoreEnvelopeRecord">
+    update store_envelope_record
+    set activity_id = #{activityId,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      update_time = now()
+    where id = #{id,jdbcType=VARCHAR} and delete_time is null
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, activity_id, member_id, status, create_time, update_time, delete_time
+    from store_envelope_record
+    where id = #{id,jdbcType=VARCHAR} and delete_time is null
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, activity_id, member_id, status, create_time, update_time, delete_time
+    from store_envelope_record where delete_time is null
+  </select>
+  <select id="selectSuccessCountByMemberIdAndActivityId" resultType="java.lang.Integer">
+    select count(1)
+    from store_envelope_record
+    where delete_time is null and member_id=#{memberId,jdbcType=VARCHAR} and activity_id=#{activityId,jdbcType=VARCHAR} and status = 1
+  </select>
+</mapper>

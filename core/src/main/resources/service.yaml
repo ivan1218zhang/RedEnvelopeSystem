@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: core
+  namespace: default
+spec:
+  ports:
+    - port: 8091		#Service端口
+      protocol: TCP	#协议
+      targetPort: 8091	#容器端口
+      nodePort: 30091	#指定暴露端口号
+  selector:
+    name: core		#指定关联Pod的标签
+  type: NodePort	#服务类型

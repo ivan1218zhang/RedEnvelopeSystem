@@ -1,0 +1,10 @@
+server:
+  port: 8093
+spring:
+  application:
+    name: async
+  rabbitmq:
+    host: 192.168.233.200
+    port: 5672
+    username: admin
+    password: 123456

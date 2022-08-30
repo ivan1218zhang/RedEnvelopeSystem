@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+  labels:
+    name: core
+spec:
+  selector:
+    matchLabels:
+      name: core
+  template:
+    metadata:
+      labels:
+        name: core
+    spec:
+      containers:
+        - name: core
+          image: 192.168.233.200:10001/library/core
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8091

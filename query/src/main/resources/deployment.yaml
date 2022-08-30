@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: query
+  labels:
+    name: query
+spec:
+  selector:
+    matchLabels:
+      name: query
+  template:
+    metadata:
+      labels:
+        name: query
+    spec:
+      containers:
+        - name: query
+          image: 192.168.233.200:10001/library/query
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8092

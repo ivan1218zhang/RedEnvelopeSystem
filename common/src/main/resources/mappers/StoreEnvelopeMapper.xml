@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyf.redenvelopesystem.common.database.dao.StoreEnvelopeMapper">
+  <resultMap id="BaseResultMap" type="com.zyf.redenvelopesystem.common.database.dto.StoreEnvelope">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+  </resultMap>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.String">
+    update store_envelope
+    set delete_time = now()
+    where id = #{id,jdbcType=VARCHAR} and delete_time is null
+  </update>
+  <insert id="insert" parameterType="com.zyf.redenvelopesystem.common.database.dto.StoreEnvelope">
+    insert into store_envelope (id, record_id, activity_id,
+      money, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{recordId,jdbcType=VARCHAR}, #{activityId,jdbcType=VARCHAR},
+      #{money,jdbcType=DOUBLE}, now())
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zyf.redenvelopesystem.common.database.dto.StoreEnvelope">
+    update store_envelope
+    set record_id = #{recordId,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE},
+      update_time = now()
+    where id = #{id,jdbcType=VARCHAR} and delete_time is null
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, record_id, activity_id, money, create_time, update_time, delete_time
+    from store_envelope
+    where id = #{id,jdbcType=VARCHAR} and delete_time is null
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, record_id, activity_id, money, create_time, update_time, delete_time
+    from store_envelope where delete_time is null
+  </select>
+  <select id="selectByActivityId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, record_id, activity_id, money, create_time, update_time, delete_time
+    from store_envelope
+    where activity_id = #{activityId,jdbcType=VARCHAR} and delete_time is null
+  </select>
+  <select id="selectByRecordId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, record_id, activity_id, money, create_time, update_time, delete_time
+    from store_envelope
+    where record_id = #{recordId,jdbcType=VARCHAR} and delete_time is null
+  </select>
+</mapper>

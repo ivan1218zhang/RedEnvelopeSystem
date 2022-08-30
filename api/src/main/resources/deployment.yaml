@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    name: api
+spec:
+  selector:
+    matchLabels:
+      name: api
+  template:
+    metadata:
+      labels:
+        name: api
+    spec:
+      containers:
+        - name: api
+          image: 192.168.233.200:10001/library/api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8090
