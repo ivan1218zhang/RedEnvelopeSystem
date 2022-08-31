@@ -8,13 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="async" />
         <module name="core" />
-        <module name="task" />
+        <module name="api" />
         <module name="common" />
         <module name="query" />
-        <module name="api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="task" target="1.8" />
       <module name="test" target="1.8" />
     </bytecodeTargetLevel>
   </component>

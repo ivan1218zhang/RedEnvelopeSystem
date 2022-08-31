@@ -14,7 +14,6 @@
         <module>core</module>
         <module>query</module>
         <module>async</module>
-        <module>Task</module>
     </modules>
 
     <properties>
