@@ -10,16 +10,16 @@
 
 ## 技术栈
 
-| 技术栈           | 说明             |
-|:------------- |:-------------- |
-| Spring Boot   | 基础搭建以及和第三方整合   |
-| Spring Cloud  | rpc调用          |
-| MyBatis+Mysql | 持久化            |
-| Redis         | 数据缓存           |
-| Redisson      | 分布式锁           |
-| RabbitMQ      | 消息队列           |
-| Docker        | 镜像打包           |
-| K8s           | 服务发现、负载均衡、项目部署 |
+| 技术栈                    | 说明             |
+|:-----------------------|:---------------|
+| Spring Boot            | 基础搭建以及和第三方整合   |
+| Spring Cloud OpenFeign | RPC调用          |
+| MyBatis+Mysql          | 持久化            |
+| Redis                  | 数据缓存           |
+| Redisson               | 分布式锁           |
+| RabbitMQ               | 消息队列           |
+| Docker                 | 镜像打包           |
+| K8s                    | 服务发现、负载均衡、项目部署 |
 
 ## 接口文档
 
