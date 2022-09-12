@@ -9,6 +9,9 @@ import com.zyf.redenvelopesystem.common.vo.StoreEnvelopeRecordVo;
 import com.zyf.redenvelopesystem.query.service.StoreEnvelopeRecordService;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Service
 public class StoreEnvelopeRecordServiceImpl implements StoreEnvelopeRecordService {
     final
@@ -44,5 +47,25 @@ public class StoreEnvelopeRecordServiceImpl implements StoreEnvelopeRecordServic
         }
         redisUtil.set(redisRecordId, storeEnvelopeRecordVo);
         return storeEnvelopeRecordVo;
+    }
+
+    @Override
+    public List<StoreEnvelopeRecordVo> querySuccessByMemberId(String memberId) {
+        String redisKey="QUERY:SUCCESS:MEMBER_ID:"+memberId;
+        //先查redis
+        List<StoreEnvelopeRecordVo> storeEnvelopeRecordVos = (List<StoreEnvelopeRecordVo>) redisUtil.get(redisKey);
+        if (storeEnvelopeRecordVos !=null){
+            return storeEnvelopeRecordVos;
+        }
+        List<StoreEnvelopeRecord> storeEnvelopeRecords=storeEnvelopeRecordMapper.selectSuccessByMemberId(memberId);
+        storeEnvelopeRecordVos=new LinkedList<>();
+        for (StoreEnvelopeRecord storeEnvelopeRecord:storeEnvelopeRecords){
+            StoreEnvelopeRecordVo storeEnvelopeRecordVo=new StoreEnvelopeRecordVo(storeEnvelopeRecord);
+            StoreEnvelope storeEnvelope=storeEnvelopeMapper.selectByRecordId(storeEnvelopeRecord.getId());
+            storeEnvelopeRecordVo.setMoney(storeEnvelope.getMoney());
+            storeEnvelopeRecordVos.add(storeEnvelopeRecordVo);
+        }
+        redisUtil.set(redisKey,storeEnvelopeRecordVos,10);
+        return storeEnvelopeRecordVos;
     }
 }

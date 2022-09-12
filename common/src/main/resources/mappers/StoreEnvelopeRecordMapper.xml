@@ -43,4 +43,9 @@
     from store_envelope_record
     where delete_time is null and member_id=#{memberId,jdbcType=VARCHAR} and activity_id=#{activityId,jdbcType=VARCHAR} and status = 1
   </select>
+  <select id="selectSuccessByMemberId" resultMap="BaseResultMap">
+    select id, activity_id, member_id, status, create_time, update_time, delete_time
+    from store_envelope_record
+    where delete_time is null and member_id=#{memberId,jdbcType=VARCHAR} and status = 1
+  </select>
 </mapper>

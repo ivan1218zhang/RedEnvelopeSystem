@@ -42,6 +42,6 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id, store_id, total_number, total_money, status, start_time, create_time, 
     update_time, delete_time
-    from store_envelope_activity where delete_time is null
+    from store_envelope_activity where delete_time is null and status=0
   </select>
 </mapper>

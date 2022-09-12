@@ -20,4 +20,6 @@ public interface QueryClient {
 
     @RequestMapping("/store-envelope-record/query/id")
     Response<StoreEnvelopeRecordVo> queryStoreEnvelopeRecordById(@RequestParam("recordId") String recordId);
+    @RequestMapping("/store-envelope-record/query/success/member/id")
+    Response<List<StoreEnvelopeRecordVo>> querySuccessByMemberId(@RequestParam("memberId") String memberId);
 }

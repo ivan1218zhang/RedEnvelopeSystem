@@ -4,11 +4,12 @@ import com.zyf.redenvelopesystem.api.client.CoreClient;
 import com.zyf.redenvelopesystem.api.client.QueryClient;
 import com.zyf.redenvelopesystem.common.vo.Response;
 import com.zyf.redenvelopesystem.common.vo.StoreEnvelopeActivityVo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/store-envelope-activity")
 public class StoreEnvelopeActivityController {

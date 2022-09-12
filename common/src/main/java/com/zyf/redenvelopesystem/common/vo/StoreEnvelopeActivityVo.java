@@ -13,7 +13,6 @@ public class StoreEnvelopeActivityVo {
 
     private Integer status;
     private Long startTime;
-
     public String getId() {
         return id;
     }
@@ -61,6 +60,7 @@ public class StoreEnvelopeActivityVo {
     public void setStartTime(Long startTime) {
         this.startTime = startTime;
     }
+
 
     public StoreEnvelopeActivityVo() {
 

@@ -17,4 +17,6 @@ public interface StoreEnvelopeRecordMapper {
     int updateByPrimaryKey(StoreEnvelopeRecord record);
 
     int selectSuccessCountByMemberIdAndActivityId(@Param("memberId") String memberId, @Param(("activityId")) String activityId);
+
+    List<StoreEnvelopeRecord> selectSuccessByMemberId(String memberId);
 }

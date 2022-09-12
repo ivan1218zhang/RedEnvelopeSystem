@@ -29,4 +29,7 @@ public class RedisUtil {
     public void set(String key,Object object){
         redisTemplate.opsForValue().set(key,object);
     }
+    public void set(String key,Object object,long expireTime){
+        redisTemplate.opsForValue().set(key,object,expireTime,TimeUnit.SECONDS);
+    }
 }
